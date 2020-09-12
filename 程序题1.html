@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、给定一个字符串例如：“aabbccaddeeffgghhiia”；问题如下：  
+            var str="aabbccaddeeffgghhiia";
+        // A、字符串的字节长度。
+            console.log("字符串的字节长度:"+str.length);
+            var len=str.length;
+        // B、取出指定位置0,3,5,9的字符，返回新的字符串。  
+            var strArr=str.split("");
+            var strArrNew=[];
+            for(var i in strArr){
+             if(i==0 || i==3 ||i==5 ||i==9){
+                 continue;
+             }else{
+                 strArrNew.push(strArr[i]);
+             }
+            }
+            var strNew="";
+            for(var i=0; i<len; i++){
+                if(i==0 || i==3 ||i==5 ||i==9){
+                    continue;
+                }else{
+                    strNew+=str[i];
+                }
+            }
+            console.log(strNew);
+            console.log(strArrNew.join(""));
+        // C、判断并输出指定字符i和c是否同时存在以上字符串中。
+            if(str.indexOf("i")!=-1 && str.indexOf("c")!=-1){
+                console.log("同时存在i和c");
+            }else{
+                console.log("不同时存在");
+            }
+        
+        // D、截取指定开始位置1到结束位置5的字符串。 
+            //console.log(str.substring(1,5));
+            
+        // E、找出字符串中出现次数最多的字符和出现的次数。
+            //排序，前后比较不相同插入特殊符号，由特殊符号分隔成数组 
+            var strArr=str.split("");
+            var strArrNew=strArr.sort();
+            var strArrNew2=[];
+            for(var i=0; i<strArrNew.length; i++){
+                strArrNew2.push(strArrNew[i]); //存储为新数组
+                if(strArrNew[i]!=strArrNew[i+1]){//当前后字符不同时，插入特殊符号元素
+                    strArrNew2.push("#");
+                }
+            }
+            var strArrNew3=strArrNew2.join("").split("#");
+            console.log(strArrNew3);
+
+            var maxLen=0;
+            var maxIndex=0;
+            for(var i=0; i<strArrNew3.length; i++){
+                if(strArrNew3[i].length>maxLen){
+                    maxLen=strArrNew3[i].length;
+                    maxIndex=i;
+                }
+            }
+            console.log(maxLen);
+            console.log(strArrNew3[maxIndex][0]);
+    </script>
+</body>
+</html>
